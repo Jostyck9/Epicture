@@ -21,6 +21,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    buildTypes.each {
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+        def imgurApiKey = properties.getProperty("imgur_api_key", "")
+
+        it.buildConfigField 'String', "IMGUR_API_KEY", imgurApiKey
+
+        it.resValue 'string', "api_key", imgurApiKey
+
+    }
 }
 
 dependencies {
