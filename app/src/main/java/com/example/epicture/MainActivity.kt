@@ -9,8 +9,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.github.kittinunf.fuel.httpGet
-import com.github.kittinunf.result.Result;
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,20 +27,5 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        val httpAsync = "https://httpbin.org/get".httpGet().responseString { request, response, result ->
-                when (result) {
-                    is Result.Failure -> {
-                        val ex = result.getException()
-                        val myToast1 = Toast.makeText(this, ex.toString(), Toast.LENGTH_SHORT)
-                        myToast1.show()
-                    }
-                    is Result.Success -> {
-                        val data = result.get()
-                        val myToast2 = Toast.makeText(this, data, Toast.LENGTH_SHORT)
-                        myToast2.show()
-                    }
-                }
-            }
-        httpAsync.join()
     }
 }
