@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.epicture.GridSpacingItemDecoration
 import com.example.epicture.GridSpacingItemDecoration.Companion.dpToPx
 import com.example.epicture.Model.Gallery
+import com.example.epicture.Model.Image
 import com.example.epicture.R
 import kotlinx.android.synthetic.main.fragment_discover.*
 import java.util.ArrayList
@@ -23,12 +24,13 @@ class DiscoverListActivity : Fragment(), DiscoverListContract.View {
     private val TAG = "DiscoverListActivity"
     private var discoverListPresenter = DiscoverListPresenter(this)
     private var rvDiscoverList: RecyclerView? = null
-    private var discoverList = mutableListOf<Gallery>()
+    private var discoverList = mutableListOf<Image>()
     private var discoverAdapter: DiscoverAdapter? = null
     private var pbLoading: ProgressBar? = null
     //private var fabFilter: FloatingActionButton? = null
     //private var tvEmptyView: TextView? = null
 
+    private var pageNo = 1
     private var previousTotal = 0
     private var loading = true
     private val visibleThreshold = 5
@@ -88,7 +90,7 @@ class DiscoverListActivity : Fragment(), DiscoverListContract.View {
                     }
                 }
                 if (!loading && totalItemCount - visibleItemCount <= firstVisibleItem + visibleThreshold) {
-                    discoverListPresenter!!.getMoreData(1)
+                    discoverListPresenter!!.getMoreData(pageNo)
                     loading = true
                 }
             }
@@ -101,8 +103,12 @@ class DiscoverListActivity : Fragment(), DiscoverListContract.View {
     }
 
     override fun setDataToRecyclerView(discoverArrayList: List<Gallery>) {
-        discoverList.addAll(discoverArrayList)
+        for (gallery in discoverArrayList) {
+            if (gallery.images != null)
+                discoverList.addAll(gallery.images)
+        }
         discoverAdapter?.notifyDataSetChanged()
+        pageNo++
     }
 
 

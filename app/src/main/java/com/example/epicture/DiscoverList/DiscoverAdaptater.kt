@@ -4,8 +4,6 @@ import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -18,20 +16,12 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.example.epicture.Model.Gallery
-
-import java.text.DateFormat
-import java.text.ParseException
-import java.text.SimpleDateFormat
-import java.util.ArrayList
-import java.util.Date
-import java.util.Locale
+import com.example.epicture.Model.Image
 
 import com.example.epicture.R
-import com.example.epicture.DiscoverList.DiscoverListActivity
-//import com.example.epicture.network.ApiClient
 
 class DiscoverAdapter(private val discoverListActivity: DiscoverListActivity,
-                      private val discoverList: MutableList<Gallery>) : RecyclerView.Adapter<DiscoverAdapter.MyViewHolder>() {
+                      private val discoverList: MutableList<Image>) : RecyclerView.Adapter<DiscoverAdapter.MyViewHolder>() {
 //    private val originalDiscoverList: MutableList<Gallery> = discoverList
 
 //    private var fromDate: String? = null
@@ -49,50 +39,43 @@ class DiscoverAdapter(private val discoverListActivity: DiscoverListActivity,
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
         // loading album cover using Glide library
-        for (gallery in discoverList) {
-            if (gallery.images != null) {
-                for (image in gallery.images) {
-                    holder.tvImageTitle.text = image.title
-                    holder.tvImageUps.text = image.ups.toString()
-                    holder.tvImageDowns.text = image.downs.toString()
-                    Glide.with(discoverListActivity)
-                        .load(image.link)
-                        .listener(object : RequestListener<Drawable> {
-                            override fun onLoadFailed(
-                                e: GlideException?,
-                                model: Any,
-                                target: Target<Drawable>,
-                                isFirstResource: Boolean
-                            ): Boolean {
-                                holder.pbLoadImage.visibility = View.GONE
-                                return false
-                            }
 
-                            override fun onResourceReady(
-                                resource: Drawable,
-                                model: Any,
-                                target: Target<Drawable>,
-                                dataSource: DataSource,
-                                isFirstResource: Boolean
-                            ): Boolean {
-                                holder.pbLoadImage.visibility = View.GONE
-                                return false
-                            }
-                        })
-                        .apply(RequestOptions().placeholder(R.drawable.ic_place_holder).error(R.drawable.ic_place_holder))
-                        .into(holder.ivMovieThumb)
+        holder.tvImageTitle.text = discoverList[position]!!.title
+        holder.tvImageUps.text = discoverList[position]!!.ups.toString()
+        holder.tvImageDowns.text = discoverList[position]!!.downs.toString()
+        Glide.with(discoverListActivity)
+            .load(discoverList[position]!!.link)
+            .listener(object : RequestListener<Drawable> {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any,
+                    target: Target<Drawable>,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    holder.pbLoadImage.visibility = View.GONE
+                    return false
                 }
-            }
-        }
 
+                override fun onResourceReady(
+                    resource: Drawable,
+                    model: Any,
+                    target: Target<Drawable>,
+                    dataSource: DataSource,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    holder.pbLoadImage.visibility = View.GONE
+                    return false
+                }
+            })
+            .apply(RequestOptions().placeholder(R.drawable.ic_place_holder).error(R.drawable.ic_place_holder))
+            .into(holder.ivImageThumb)
+    }
 
         /*holder.itemView.setOnClickListener(View.OnClickListener {
             discoverListActivity.onMovieItemClick(
                 position
             )
         })*/
-
-    }
 
     override fun getItemCount(): Int {
         return discoverList.size
@@ -168,10 +151,10 @@ class DiscoverAdapter(private val discoverListActivity: DiscoverListActivity,
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var tvImageTitle: TextView = itemView.findViewById(R.id.tv_movie_title)
-        var tvImageUps: TextView = itemView.findViewById(R.id.tv_release_date)
-        var tvImageDowns: TextView = itemView.findViewById(R.id.tv_movie_ratings)
-        var ivMovieThumb: ImageView = itemView.findViewById(R.id.iv_movie_thumb)
+        var tvImageTitle: TextView = itemView.findViewById(R.id.tv_image_title)
+        var tvImageUps: TextView = itemView.findViewById(R.id.tv_image_ups)
+        var tvImageDowns: TextView = itemView.findViewById(R.id.tv_image_downs)
+        var ivImageThumb: ImageView = itemView.findViewById(R.id.iv_image_thumb)
         var pbLoadImage: ProgressBar = itemView.findViewById(R.id.pb_load_image)
     }
 }

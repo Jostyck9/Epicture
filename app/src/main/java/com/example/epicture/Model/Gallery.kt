@@ -106,7 +106,7 @@ data class Gallery (
     val include_album_ads : Boolean? = null,
 
     @SerializedName("images")
-    val images : List<Image>? = null,
+    val images : List<Image>,
 
     @SerializedName("ad_config")
     val ad_config : AdConfig? = null
