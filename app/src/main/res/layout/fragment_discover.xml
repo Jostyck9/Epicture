@@ -6,25 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".DiscoverList.DiscoverListActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_image_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:scrollbars="vertical" />
+
     <ProgressBar
         android:id="@+id/pb_loading"
         style="@style/Base.Widget.AppCompat.ProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="303dp"
-        android:layout_height="214dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="54dp"
-        android:layout_marginTop="99dp"
-        android:layout_marginEnd="53dp"
-        android:layout_marginBottom="418dp"
-        android:text="Nothing but it's right" />
 
 </RelativeLayout>
