@@ -1,6 +1,5 @@
 package com.example.epicture.DiscoverList
 
-import android.graphics.Movie
 import com.example.epicture.Model.Gallery
 
 interface DiscoverListContract {
