@@ -14,7 +14,7 @@
         android:scrollbars="vertical" />
 
     <ProgressBar
-        android:id="@+id/pb_loadingLogin"
+        android:id="@+id/pb_loading"
         style="@style/Base.Widget.AppCompat.ProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
