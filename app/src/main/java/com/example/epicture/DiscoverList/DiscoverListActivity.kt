@@ -40,10 +40,11 @@ class DiscoverListActivity : Fragment(), DiscoverListContract.View {
     override fun hideProgress() {
     }
 
-    override fun setDataToRecyclerView(discoverArrayList: List<Gallery>) {
-        if (discoverArrayList.size > 0) {
-            textView4.text = discoverArrayList[0].account_url
-        }
+    override fun setDataToRecyclerView(discoverArrayList: String) {
+        //if (discoverArrayList.size > 0) {
+        //    textView4.text = discoverArrayList[0].account_url
+        //}
+        textView4.text = discoverArrayList
     }
 
 

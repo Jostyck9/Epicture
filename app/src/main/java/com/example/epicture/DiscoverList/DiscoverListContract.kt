@@ -6,7 +6,7 @@ interface DiscoverListContract {
 
     interface Model {
         interface OnFinishedListener {
-            fun onFinished(galleryArrayList : List<Gallery>)
+            fun onFinished(galleryArrayList : String)
 
             fun onFailure(t : Throwable)
         }
@@ -19,7 +19,7 @@ interface DiscoverListContract {
 
         fun hideProgress()
 
-        fun setDataToRecyclerView(galleryArrayList: List<Gallery>)
+        fun setDataToRecyclerView(galleryArrayList: String)
 
         fun onResponseFailure(throwable: Throwable)
     }

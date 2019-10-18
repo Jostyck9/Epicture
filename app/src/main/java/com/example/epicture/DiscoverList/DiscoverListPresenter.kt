@@ -16,7 +16,7 @@ class DiscoverListPresenter (var discoverListView : DiscoverListContract.View?)
         this.discoverListView?.onResponseFailure(t)
     }
 
-    override fun onFinished(galleryArrayList: List<Gallery>) {
+    override fun onFinished(galleryArrayList: String) {
         this.discoverListView?.setDataToRecyclerView(galleryArrayList)
     }
 

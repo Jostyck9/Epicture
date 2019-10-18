@@ -15,8 +15,9 @@ interface ApiInterface {
                 @Path("sort") sort : String,
                 @Path("window") window : String,
                 @Path("page") pageNo : Int,
-                @Header("Authorization:\\Client-ID\\") idClient : String = "c0de6adf042c785") : Call<ResponseApi<List<Gallery>>>
-                //@Query("showViral") showViral : String = "true",
-                //@Query("shwMature") showMature : String = "true",
-                //@Query("albumPreviews") albumPreviews : String = "true",
+                @Query("showViral") showViral : String = "true",
+                @Query("mature") showMature : String = "true",
+                @Query("album_previews") albumPreviews : String = "false",
+                @Header("Authorization") idClient : String = "Client-ID c0de6adf042c785"
+                ) : Call<String>
 }

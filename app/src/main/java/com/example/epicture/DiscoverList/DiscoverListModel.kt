@@ -20,28 +20,32 @@ class DiscoverListModel : DiscoverListContract.Model {
     ) {
         val apiService = ApiClient.retrofit.create(ApiInterface::class.java)
 
-        val call = apiService.gallery("hot", "viral", "day", pageNo)
-        call.enqueue(object : Callback<ResponseApi<List<Gallery>>> {
+        val call : Call<String> = apiService.gallery("hot", "viral", "day", pageNo)
+        Log.wtf(TAG, call.request().url().toString())
+        Log.wtf(TAG, call.request().headers().toString())
+        call.enqueue(object : Callback<String> {
             override fun onResponse(
-                call: Call<ResponseApi<List<Gallery>>>,
-                response: Response<ResponseApi<List<Gallery>>>
+                call: Call<String>,
+                response: Response<String>
             ) {
-                val galleries : ResponseApi<List<Gallery>>? = response.body()
+                val galleries : String? = response.body()
                 if (galleries == null) {
-                    Log.e(TAG, "Body null error")
+                    //Log.e(TAG, "Body null error")
+                    Log.e(TAG, "Code : " + response.raw())
                     onFinishedListener.onFailure(Throwable("Body null error"))
                 } else {
-                    if (galleries.success) {
-                        Log.d(TAG, "Number of movies received: " + galleries.data?.size?.toString())
-                        onFinishedListener.onFinished(galleries.data)
-                    } else {
-                        Log.e(TAG, "Error : " + galleries.status)
-                        onFinishedListener.onFailure(Throwable("Error : " + galleries.status))
-                    }
+                    onFinishedListener.onFinished(galleries)
+                    //if (galleries.success) {
+                    //    Log.d(TAG, "Number of movies received: " + galleries.data?.size?.toString())
+                    //    onFinishedListener.onFinished(galleries.data)
+                    //} else {
+                    //    Log.e(TAG, "Error : " + galleries.status)
+                    //    onFinishedListener.onFailure(Throwable("Error : " + galleries.status))
+                    //}
                 }
             }
 
-            override fun onFailure(call: Call<ResponseApi<List<Gallery>>>, t: Throwable) {
+            override fun onFailure(call: Call<String>, t: Throwable) {
                 // Log error here since request failed
                 Log.e(TAG, t.toString())
                 onFinishedListener.onFailure(t)
