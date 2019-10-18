@@ -1,5 +1,6 @@
 package com.example.epicture.Network
 
+import com.example.epicture.Constants
 import com.example.epicture.Model.Gallery
 import com.example.epicture.Model.ResponseApi
 import retrofit2.http.GET
@@ -18,6 +19,6 @@ interface ApiInterface {
                 @Query("showViral") showViral : String = "true",
                 @Query("mature") showMature : String = "true",
                 @Query("album_previews") albumPreviews : String = "false",
-                @Header("Authorization") idClient : String = "Client-ID c0de6adf042c785"
+                @Header("Authorization") idClient : String = "Client-ID " + Constants.clientID
                 ) : Call<ResponseApi<List<Gallery>>>
 }
