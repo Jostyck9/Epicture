@@ -11,8 +11,8 @@ class ApiClient {
 
         val retrofit : Retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .addConverterFactory(ScalarsConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
-            //.addConverterFactory(GsonConverterFactory.create())
+        //.addConverterFactory(ScalarsConverterFactory.create())
     }
 }

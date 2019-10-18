@@ -1,6 +1,5 @@
 package com.example.epicture.DiscoverList
 
-import android.widget.Toast
 import com.example.epicture.Model.Gallery
 
 class DiscoverListPresenter (var discoverListView : DiscoverListContract.View?)
@@ -16,7 +15,7 @@ class DiscoverListPresenter (var discoverListView : DiscoverListContract.View?)
         this.discoverListView?.onResponseFailure(t)
     }
 
-    override fun onFinished(galleryArrayList: String) {
+    override fun onFinished(galleryArrayList: List<Gallery>) {
         this.discoverListView?.setDataToRecyclerView(galleryArrayList)
     }
 

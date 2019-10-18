@@ -34,8 +34,8 @@ data class Image (
     @SerializedName("views")
     val views : Int? = null,
 
-    @SerializedName("bandwidth")
-    val bandwidth : Int? = null,
+    //@SerializedName("bandwidth")
+    //val bandwidth : Int? = null,
 
     @SerializedName("vote")
     val vote : Int? = null,
@@ -65,7 +65,7 @@ data class Image (
     val has_sound : Boolean? = null,
 
     @SerializedName("tags")
-    val tags : MutableList<Tag>? = null,
+    val tags : List<Tag>? = null,
 
     @SerializedName("ad_type")
     val ad_type : Int? = null,

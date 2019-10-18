@@ -4,11 +4,11 @@ import com.google.gson.annotations.SerializedName
 
 data class AdConfig (
     @SerializedName("safeFlags")
-    val safeFlags : MutableList<String>? = null,
+    val safeFlags : List<String>? = null,
 
     @SerializedName("highRiskFlags")
-    val highRiskFlags : MutableList<String>? = null,
+    val highRiskFlags : List<String>? = null,
 
     @SerializedName("unsafeFlags")
-    val unsafeFlags : MutableList<String>? = null
+    val unsafeFlags : List<String>? = null
 )

@@ -106,8 +106,8 @@ data class Gallery (
     val include_album_ads : Boolean? = null,
 
     @SerializedName("images")
-    val images : MutableList<Image>? = null,
+    val images : List<Image>? = null,
 
     @SerializedName("ad_config")
-    val ad_config : MutableList<AdConfig>? = null
+    val ad_config : AdConfig? = null
 )

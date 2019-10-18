@@ -46,8 +46,8 @@ data class Tag (
     val logo_hash : String? = null,
 
     @SerializedName("logo_destination_url")
-    val logo_destination_url : String? = null,
+    val logo_destination_url : String? = null
 
-    @SerializedName("description_annotations")
-    val description_annotations : String? = null
+    //@SerializedName("description_annotations")
+    //val description_annotations : String? = null
 )
