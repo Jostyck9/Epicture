@@ -30,7 +30,5 @@ interface DiscoverListContract {
 
         fun getMoreData(pageNo: Int)
 
-        fun requestDataFromServer()
-
     }
 }

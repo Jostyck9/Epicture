@@ -1,29 +1,26 @@
 package com.example.epicture.DiscoverList
 
+import android.widget.Toast
 import com.example.epicture.Model.Gallery
 
-class DiscoverListPresenter (val discoverListView : DiscoverListContract.View)
+class DiscoverListPresenter (var discoverListView : DiscoverListContract.View?)
     : DiscoverListContract.Presenter, DiscoverListContract.Model.OnFinishedListener
 {
-    //val discoverListModel : DiscoverListContract.Model = DiscoverListModel()
+    val discoverListModel : DiscoverListContract.Model = DiscoverListModel()
 
     override fun onDestroy() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        this.discoverListView = null
     }
 
     override fun onFailure(t: Throwable) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        this.discoverListView?.onResponseFailure(t)
     }
 
     override fun onFinished(galleryArrayList: List<Gallery>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        this.discoverListView?.setDataToRecyclerView(galleryArrayList)
     }
 
     override fun getMoreData(pageNo: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun requestDataFromServer() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        discoverListModel.getGalleryList(this, pageNo)
     }
 }
