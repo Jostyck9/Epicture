@@ -21,16 +21,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    buildTypes.each {
-        Properties properties = new Properties()
-        properties.load(project.rootProject.file("local.properties").newDataInputStream())
-        def imgurApiKey = properties.getProperty("imgur_api_key", "")
-
-        it.buildConfigField 'String', "IMGUR_API_KEY", imgurApiKey
-
-        it.resValue 'string', "api_key", imgurApiKey
-
-    }
 }
 
 dependencies {
@@ -72,10 +62,10 @@ dependencies {
     }
 
     // View support library
-    implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     implementation 'com.android.support:cardview-v7:27.1.1'
-    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.android.support:design:27.1.1'
 
     // Glide - image processing library
