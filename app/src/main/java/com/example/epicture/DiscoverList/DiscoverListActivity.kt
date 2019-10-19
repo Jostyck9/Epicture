@@ -88,7 +88,7 @@ class DiscoverListActivity : Fragment(), DiscoverListContract.View {
                     }
                 }
                 if (!loading && totalItemCount - visibleItemCount <= firstVisibleItem + visibleThreshold) {
-                    discoverListPresenter!!.getMoreData(pageNo)
+                    discoverListPresenter.getMoreData(pageNo)
                     loading = true
                 }
             }

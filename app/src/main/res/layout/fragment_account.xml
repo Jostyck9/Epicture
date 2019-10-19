@@ -11,76 +11,87 @@
 
     <ImageView
         android:id="@+id/cover_image"
-        android:layout_width="411dp"
-        android:layout_height="135dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="100sp"
+        android:contentDescription="CoverImage of the user"
+        android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:srcCompat="?attr/actionModeBackground" />
 
     <ImageView
         android:id="@+id/avatar_image"
-        android:layout_width="128dp"
-        android:layout_height="90dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.126" />
+        android:layout_width="87dp"
+        android:layout_height="74dp"
+        android:contentDescription="User's Avatar"
+        app:layout_constraintBottom_toBottomOf="@+id/cover_image"
+        app:layout_constraintEnd_toEndOf="@+id/cover_image"
+        app:layout_constraintStart_toStartOf="@+id/cover_image"
+        app:layout_constraintTop_toTopOf="@+id/cover_image"
+        app:layout_constraintVertical_bias="0.615"
+        tools:srcCompat="@tools:sample/avatars[0]" />
 
-    <TextView
-        android:id="@+id/text_username"
-        android:layout_width="169dp"
-        android:layout_height="31dp"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsv_scroll_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.257" />
+        app:layout_constraintTop_toBottomOf="@+id/cover_image">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_username"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:gravity="center"
+                android:textColor="@color/colorTitleTxt"
+                android:textSize="18sp"
+                tools:text="Surname" />
+
+            <TextView
+                android:id="@+id/text_about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="MyBio"
+                android:textAlignment="center"
+                android:textColor="@color/colorTitleTxt" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_posts"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
     <TextView
         android:id="@+id/text_points"
-        android:layout_width="132dp"
-        android:layout_height="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.143"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.338" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="points"
+        android:textColor="@color/colorTitleTxt"
+        app:layout_constraintBottom_toBottomOf="@+id/cover_image"
+        app:layout_constraintEnd_toStartOf="@+id/avatar_image"
+        app:layout_constraintStart_toStartOf="@+id/cover_image"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_notoriety"
-        android:layout_width="132dp"
-        android:layout_height="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.856"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.338" />
-
-    <TextView
-        android:id="@+id/text_about"
-        android:layout_width="353dp"
-        android:layout_height="188dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.539" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="409dp"
-        android:layout_height="208dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="@color/colorTitleTxt"
+        app:layout_constraintBottom_toBottomOf="@+id/cover_image"
+        app:layout_constraintEnd_toEndOf="@+id/cover_image"
+        app:layout_constraintStart_toEndOf="@+id/avatar_image"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,9 +31,9 @@ class AccountAdapter (private val accountListActivity: AccountActivity,
 
         // loading album cover using Glide library
 
-        holder.tvImageTitle.text = accountList[position]!!.title
-        holder.tvImageUps.text = accountList[position]!!.ups.toString()
-        holder.tvImageDowns.text = accountList[position]!!.downs.toString()
+        holder.tvImageTitle.text = accountList[position].title
+        holder.tvImageUps.text = accountList[position].ups.toString()
+        holder.tvImageDowns.text = accountList[position].downs.toString()
         Glide.with(accountListActivity)
             .load(accountList[position]!!.link)
             .listener(object : RequestListener<Drawable> {

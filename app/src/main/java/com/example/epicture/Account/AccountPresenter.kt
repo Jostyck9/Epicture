@@ -22,7 +22,7 @@ class AccountPresenter (var accountView : AccountContract.View?)
     }
 
     override fun onFinishedAccount(accountUser: User) {
-        this.accountView?.setAcountData(accountUser)
+        this.accountView?.setAccountData(accountUser)
     }
 
     override fun onFinishedPosts(postsUser: List<Image>) {

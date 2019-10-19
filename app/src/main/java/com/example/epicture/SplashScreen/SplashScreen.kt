@@ -35,7 +35,7 @@ class SplashScreen : AppCompatActivity() {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
 
         // Close this activity
-        //finish()
+        finish()
     }
 
     private fun animLogo() {

@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/navigation_account"
-        android:name="com.example.epicture.ui.account.AccountFragment"
+        android:name="com.example.epicture.Account.AccountActivity"
         android:label="@string/title_account"
         tools:layout="@layout/fragment_account" />
 

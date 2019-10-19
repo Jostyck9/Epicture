@@ -29,6 +29,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/movie_thumb_height"
                     android:background="?attr/selectableItemBackgroundBorderless"
+                    android:scaleType="fitXY"
+                    android:adjustViewBounds="true"
                     android:contentDescription="Hold movie thumbnail" />
 
                 <ProgressBar
