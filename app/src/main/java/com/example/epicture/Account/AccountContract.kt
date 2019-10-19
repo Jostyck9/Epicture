@@ -23,7 +23,7 @@ interface AccountContract
         fun hideProgress()
 
         fun setPostsToRecyclerView(imageList: List<Image>)
-        fun setAcountData(accountUser: User)
+        fun setAccountData(accountUser: User)
 
         fun onResponseFailure(throwable: Throwable)
     }
