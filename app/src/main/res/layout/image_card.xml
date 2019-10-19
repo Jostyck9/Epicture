@@ -8,12 +8,12 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_margin="@dimen/card_margin"
         android:elevation="@dimen/card_elevation"
         android:foreground="?android:attr/selectableItemBackground"
         app:cardBackgroundColor="@color/colorLayout"
-        app:cardCornerRadius="@dimen/card_album_radius">
+        app:cardCornerRadius="@dimen/card_album_radius"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -27,7 +27,7 @@
                 <ImageView
                     android:id="@+id/iv_image_thumb"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/movie_thumb_height"
+                    android:layout_height="wrap_content"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:scaleType="fitXY"
                     android:adjustViewBounds="true"
