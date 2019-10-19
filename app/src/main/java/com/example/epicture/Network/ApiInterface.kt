@@ -2,6 +2,7 @@ package com.example.epicture.Network
 
 import com.example.epicture.Constants
 import com.example.epicture.Model.Gallery
+import com.example.epicture.Model.Image
 import com.example.epicture.Model.ResponseApi
 import com.example.epicture.Model.User
 import retrofit2.http.GET
@@ -27,4 +28,8 @@ interface ApiInterface {
     fun accountBase(@Path("username") username : String,
                    @Header("Authorization") idClient : String = "Client-ID " + Constants.clientID
                    ) : Call<ResponseApi<User>>
+
+    @GET("account/me/images")
+    fun getAccountImages(@Header("Authorization") bearer : String = "Bearer " + Constants.accessToken
+                        ) : Call<ResponseApi<List<Image>>>
 }
