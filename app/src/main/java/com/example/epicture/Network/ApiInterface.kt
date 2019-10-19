@@ -21,4 +21,9 @@ interface ApiInterface {
                 @Query("album_previews") albumPreviews : String = "false",
                 @Header("Authorization") idClient : String = "Client-ID " + Constants.clientID
                 ) : Call<ResponseApi<List<Gallery>>>
+
+    @GET("account/{username}")
+    fun accountBase(@Path("username") username : String,
+                   @Header("Authorization") idClient : String = "Client-ID " + Constants.clientID
+                   )
 }
