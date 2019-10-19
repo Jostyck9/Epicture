@@ -21,7 +21,7 @@ import com.example.epicture.Model.Image
 import com.example.epicture.R
 
 class DiscoverAdapter(private val discoverListActivity: DiscoverListActivity,
-                      private val discoverList: MutableList<Image>) : RecyclerView.Adapter<DiscoverAdapter.MyViewHolder>() {
+                      private val discoverList: MutableList<Gallery>) : RecyclerView.Adapter<DiscoverAdapter.MyViewHolder>() {
 //    private val originalDiscoverList: MutableList<Gallery> = discoverList
 
 //    private var fromDate: String? = null
@@ -44,7 +44,7 @@ class DiscoverAdapter(private val discoverListActivity: DiscoverListActivity,
         holder.tvImageUps.text = discoverList[position].ups.toString()
         holder.tvImageDowns.text = discoverList[position].downs.toString()
         Glide.with(discoverListActivity)
-            .load(discoverList[position]!!.link)
+            .load(discoverList[position].images[0].link)
             .listener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(
                     e: GlideException?,

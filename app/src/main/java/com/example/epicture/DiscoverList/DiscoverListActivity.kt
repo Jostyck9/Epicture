@@ -6,28 +6,21 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.epicture.GridSpacingItemDecoration
-import com.example.epicture.GridSpacingItemDecoration.Companion.dpToPx
 import com.example.epicture.Model.Gallery
 import com.example.epicture.Model.Image
 import com.example.epicture.R
-import kotlinx.android.synthetic.main.fragment_discover.*
-import java.util.ArrayList
 
 class DiscoverListActivity : Fragment(), DiscoverListContract.View {
     private val TAG = "DiscoverListActivity"
     private var discoverListPresenter = DiscoverListPresenter(this)
     private var rvDiscoverList: RecyclerView? = null
-    private var discoverList = mutableListOf<Image>()
+    private var discoverList = mutableListOf<Gallery>()
     private var discoverAdapter: DiscoverAdapter? = null
-    //private var fabFilter: FloatingActionButton? = null
-    //private var tvEmptyView: TextView? = null
 
     private var pageNo = 1
     private var previousTotal = 0
@@ -38,7 +31,7 @@ class DiscoverListActivity : Fragment(), DiscoverListContract.View {
     internal var totalItemCount: Int = 0
     private var mLayoutManager: GridLayoutManager? = null
 
-    var root : View? = null
+    private var root : View? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,18 +45,12 @@ class DiscoverListActivity : Fragment(), DiscoverListContract.View {
         return (root)
     }
 
-    /**
-     * This method will initialize the UI components
-     */
     private fun initUI() {
         rvDiscoverList = root?.findViewById(R.id.rv_image_list)
         discoverAdapter = DiscoverAdapter(this, discoverList)
 
         mLayoutManager = GridLayoutManager(activity, 1)
         rvDiscoverList!!.layoutManager = mLayoutManager
-        rvDiscoverList!!.addItemDecoration(
-            GridSpacingItemDecoration(2, dpToPx(activity!!.applicationContext, 10),true)
-        )
         rvDiscoverList!!.itemAnimator = DefaultItemAnimator()
         rvDiscoverList!!.adapter = discoverAdapter
 
@@ -94,6 +81,7 @@ class DiscoverListActivity : Fragment(), DiscoverListContract.View {
             }
         })
     }
+
     override fun showProgress() {
     }
 
@@ -102,8 +90,8 @@ class DiscoverListActivity : Fragment(), DiscoverListContract.View {
 
     override fun setDataToRecyclerView(discoverArrayList: List<Gallery>) {
         for (gallery in discoverArrayList) {
-            if (gallery.images != null)
-                discoverList.addAll(gallery.images)
+            if (gallery.images != null && gallery.images.isNotEmpty())
+                discoverList.add(gallery)
         }
         discoverAdapter?.notifyDataSetChanged()
         pageNo++

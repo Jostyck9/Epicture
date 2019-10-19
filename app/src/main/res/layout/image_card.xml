@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -52,9 +53,11 @@
                 android:paddingLeft="@dimen/card_content_padding"
                 android:paddingTop="@dimen/card_content_padding"
                 android:paddingRight="@dimen/card_content_padding"
-                android:textColor="@color/colorButtonLayoutTxt"
+                android:textColor="@color/colorTitleTxt"
                 android:textSize="@dimen/movie_title_size"
-                android:typeface="sans" />
+                android:typeface="sans"
+                android:gravity="center"
+                tools:text="Titre" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -72,7 +75,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="0.7"
-                    android:textSize="@dimen/movie_content_size" />
+                    android:textColor="@color/colorTitleTxt"
+                    android:textSize="@dimen/movie_content_size"
+                    tools:text="ups" />
 
 
                 <TextView
@@ -84,7 +89,9 @@
                     android:drawableLeft="@drawable/star"
                     android:drawablePadding="5dp"
                     android:gravity="center_vertical"
-                    android:textSize="@dimen/movie_content_size" />
+                    android:textColor="@color/colorTitleTxt"
+                    android:textSize="@dimen/movie_content_size"
+                    tools:text="downs" />
 
             </LinearLayout>
         </RelativeLayout>
