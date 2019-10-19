@@ -5,23 +5,27 @@ import com.example.epicture.Model.User
 
 class AccountPresenter (var accountView : AccountContract.View?)
 : AccountContract.Presenter, AccountContract.Model.OnFinishedListener {
+
+    val accountModel : AccountContract.Model = AccountModel()
+
     override fun getAccountData() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        accountModel.getAccountUser(this)
+        accountModel.getPostsUser(this)
     }
 
     override fun onDestroy() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        this.accountView = null
     }
 
     override fun onFailure(t: Throwable) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        this.accountView?.onResponseFailure(t)
     }
 
     override fun onFinishedAccount(accountUser: User) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        this.accountView?.setAcountData(accountUser)
     }
 
     override fun onFinishedPosts(postsUser: List<Image>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        this.accountView?.setPostsToRecyclerView(postsUser)
     }
 }
