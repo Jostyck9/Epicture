@@ -29,13 +29,13 @@ class DiscoverListModel : DiscoverListContract.Model {
                 val galleries : ResponseApi<List<Gallery>>? = response.body()
                 if (galleries == null) {
                     Log.e(TAG, "Body null error")
-                    Log.e(TAG, "Code : " + response.raw())
-                    onFinishedListener.onFailure(Throwable("Body null error"))
+                    Log.e(TAG, "Code : " + response.code())
+                    onFinishedListener.onFailure(Throwable("Body null error : " + response.code().toString()))
                 } else {
                     if (galleries.success) {
                         if (galleries.data[0].images[0].ups == null)
                             Log.wtf(TAG, "Number of ups null : "+ call.request().url().toString())
-                        Log.d(TAG, "Number of movies received: " + galleries.data?.size?.toString())
+                        Log.d(TAG, "Number of movies received: " + galleries.data.size.toString())
                         onFinishedListener.onFinished(galleries.data)
                     } else {
                         Log.e(TAG, "Error : " + galleries.status)

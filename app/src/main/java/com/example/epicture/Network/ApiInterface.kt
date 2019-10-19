@@ -3,6 +3,7 @@ package com.example.epicture.Network
 import com.example.epicture.Constants
 import com.example.epicture.Model.Gallery
 import com.example.epicture.Model.ResponseApi
+import com.example.epicture.Model.User
 import retrofit2.http.GET
 import retrofit2.Call
 import retrofit2.http.Header
@@ -25,5 +26,5 @@ interface ApiInterface {
     @GET("account/{username}")
     fun accountBase(@Path("username") username : String,
                    @Header("Authorization") idClient : String = "Client-ID " + Constants.clientID
-                   )
+                   ) : Call<ResponseApi<User>>
 }
