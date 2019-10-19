@@ -26,7 +26,6 @@ class DiscoverListActivity : Fragment(), DiscoverListContract.View {
     private var rvDiscoverList: RecyclerView? = null
     private var discoverList = mutableListOf<Image>()
     private var discoverAdapter: DiscoverAdapter? = null
-    private var pbLoading: ProgressBar? = null
     //private var fabFilter: FloatingActionButton? = null
     //private var tvEmptyView: TextView? = null
 
@@ -68,7 +67,6 @@ class DiscoverListActivity : Fragment(), DiscoverListContract.View {
         rvDiscoverList!!.itemAnimator = DefaultItemAnimator()
         rvDiscoverList!!.adapter = discoverAdapter
 
-        pbLoading = root?.findViewById(R.id.pb_loading)
     }
 
     private fun setListeners() {
