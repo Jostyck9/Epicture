@@ -60,7 +60,7 @@ class DiscoverListActivity : Fragment(), DiscoverListContract.View {
         rvDiscoverList = root?.findViewById(R.id.rv_image_list)
         discoverAdapter = DiscoverAdapter(this, discoverList)
 
-        mLayoutManager = GridLayoutManager(activity, 2)
+        mLayoutManager = GridLayoutManager(activity, 1)
         rvDiscoverList!!.layoutManager = mLayoutManager
         rvDiscoverList!!.addItemDecoration(
             GridSpacingItemDecoration(2, dpToPx(activity!!.applicationContext, 10),true)

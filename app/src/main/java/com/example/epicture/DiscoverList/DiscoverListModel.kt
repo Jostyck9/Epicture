@@ -33,6 +33,8 @@ class DiscoverListModel : DiscoverListContract.Model {
                     onFinishedListener.onFailure(Throwable("Body null error"))
                 } else {
                     if (galleries.success) {
+                        if (galleries.data[0].images[0].ups == null)
+                            Log.wtf(TAG, "Number of ups null : "+ call.request().url().toString())
                         Log.d(TAG, "Number of movies received: " + galleries.data?.size?.toString())
                         onFinishedListener.onFinished(galleries.data)
                     } else {
