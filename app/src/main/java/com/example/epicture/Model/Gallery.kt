@@ -99,9 +99,6 @@ data class Gallery (
     @SerializedName("ad_url")
     val ad_url : String? = null,
 
-    @SerializedName("in_most_viral")
-    val in_most_viral : Boolean? = null,
-
     @SerializedName("include_album_ads")
     val include_album_ads : Boolean? = null,
 

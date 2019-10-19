@@ -6,7 +6,7 @@ import com.example.epicture.Model.User
 class AccountPresenter (var accountView : AccountContract.View?)
 : AccountContract.Presenter, AccountContract.Model.OnFinishedListener {
 
-    val accountModel : AccountContract.Model = AccountModel()
+    private val accountModel : AccountContract.Model = AccountModel()
 
     override fun getAccountData() {
         accountModel.getAccountUser(this)

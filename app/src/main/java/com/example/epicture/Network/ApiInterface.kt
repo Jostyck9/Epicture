@@ -32,4 +32,11 @@ interface ApiInterface {
     @GET("account/me/images")
     fun getAccountImages(@Header("Authorization") bearer : String = "Bearer " + Constants.accessToken
                         ) : Call<ResponseApi<List<Image>>>
+
+    @GET("account/{username}/gallery_favorites/{page}/{favoritesSort}")
+    fun accountGalleryFavorites(@Path("username") username: String,
+                                @Path("page") page : Int = 0,
+                                @Path("favoritesSort") favoritesSort : String = "newest",
+                                @Header("Authorization") idClient : String = "Client-ID " + Constants.clientID
+                                ) : Call<ResponseApi<List<Gallery>>>
 }

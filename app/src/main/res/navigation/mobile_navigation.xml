@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/navigation_favorite"
-        android:name="com.example.epicture.ui.favorites.FavoritesFragment"
+        android:name="com.example.epicture.Favorites.FavoritesActivity"
         android:label="@string/title_favorites"
         tools:layout="@layout/fragment_favorite" />
 

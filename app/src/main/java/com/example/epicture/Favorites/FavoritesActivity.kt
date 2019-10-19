@@ -1,5 +1,4 @@
-package com.example.epicture.DiscoverList
-
+package com.example.epicture.Favorites
 
 import android.os.Bundle
 import android.util.Log
@@ -11,57 +10,59 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.epicture.DiscoverList.DiscoverAdapter
 import com.example.epicture.Model.Gallery
 import com.example.epicture.R
 
-class DiscoverListActivity : Fragment(), DiscoverListContract.View {
-    private val TAG = "DiscoverListActivity"
-    private var discoverListPresenter = DiscoverListPresenter(this)
-    private var rvDiscoverList: RecyclerView? = null
-    private var discoverList = mutableListOf<Gallery>()
-    private var discoverAdapter: DiscoverAdapter? = null
+class FavoritesActivity : Fragment(), FavoritesContract.View {
 
-    private var pageNo = 1
+    private val TAG = "AccountActivity"
+    private val favoritePresenter = FavoritesPresenter(this)
+    var root : View? = null
+
+    private var favoritesList = mutableListOf<Gallery>()
+    private var pageNo = 0
+    private var end = false
+
+    private var rvFavoritesList : RecyclerView? = null
+    private var favoriteAdapter : FavoritesAdapter? = null
+    private var mLayoutManager : GridLayoutManager? = null
     private var previousTotal = 0
     private var loading = true
     private val visibleThreshold = 5
     internal var firstVisibleItem: Int = 0
     internal var visibleItemCount: Int = 0
     internal var totalItemCount: Int = 0
-    private var mLayoutManager: GridLayoutManager? = null
-
-    private var root : View? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        root = inflater.inflate(R.layout.fragment_discover, container, false)
+        root = inflater.inflate(R.layout.fragment_favorite, container, false)
         initUI()
-        setListeners()
-        discoverListPresenter.getMoreData(1)
-        return (root)
+        favoritePresenter.getAccountData(pageNo)
+        return root
     }
 
     private fun initUI() {
-        rvDiscoverList = root?.findViewById(R.id.rv_image_list)
-        discoverAdapter = DiscoverAdapter(this, discoverList)
+        rvFavoritesList = root?.findViewById(R.id.rv_image_list)
+        favoriteAdapter = FavoritesAdapter(this, favoritesList)
 
         mLayoutManager = GridLayoutManager(activity, 1)
-        rvDiscoverList!!.layoutManager = mLayoutManager
-        rvDiscoverList!!.itemAnimator = DefaultItemAnimator()
-        rvDiscoverList!!.adapter = discoverAdapter
+        rvFavoritesList!!.layoutManager = mLayoutManager
+        rvFavoritesList!!.itemAnimator = DefaultItemAnimator()
+        rvFavoritesList!!.adapter = favoriteAdapter
     }
 
     private fun setListeners() {
 
-        rvDiscoverList!!.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        rvFavoritesList!!.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
-                visibleItemCount = rvDiscoverList!!.childCount
+                visibleItemCount = rvFavoritesList!!.childCount
                 totalItemCount = mLayoutManager!!.itemCount
                 firstVisibleItem = mLayoutManager!!.findFirstVisibleItemPosition()
 
@@ -72,8 +73,8 @@ class DiscoverListActivity : Fragment(), DiscoverListContract.View {
                         previousTotal = totalItemCount
                     }
                 }
-                if (!loading && totalItemCount - visibleItemCount <= firstVisibleItem + visibleThreshold) {
-                    discoverListPresenter.getMoreData(pageNo)
+                if (!loading && totalItemCount - visibleItemCount <= firstVisibleItem + visibleThreshold && !end) {
+                    favoritePresenter.getAccountData(pageNo)
                     loading = true
                 }
             }
@@ -86,24 +87,21 @@ class DiscoverListActivity : Fragment(), DiscoverListContract.View {
     override fun hideProgress() {
     }
 
-    override fun setDataToRecyclerView(discoverArrayList: List<Gallery>) {
-        for (gallery in discoverArrayList) {
+    override fun setGalleryToRecyclerView(galleryArrayList: List<Gallery>) {
+        for (gallery in galleryArrayList) {
             if (gallery.images != null && gallery.images.isNotEmpty())
-                discoverList.add(gallery)
+                favoritesList.add(gallery)
         }
-        discoverAdapter?.notifyDataSetChanged()
+        if (galleryArrayList.isEmpty()) {
+            end = true
+            return
+        }
+        favoriteAdapter?.notifyDataSetChanged()
         pageNo++
     }
 
-
     override fun onResponseFailure(throwable: Throwable) {
-
         Log.e(TAG, throwable.message)
         Toast.makeText(activity, throwable.message, Toast.LENGTH_LONG).show()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        discoverListPresenter.onDestroy()
     }
 }
