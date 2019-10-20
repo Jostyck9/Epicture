@@ -114,6 +114,7 @@ class FavoritesActivity : Fragment(), FavoritesContract.View {
         val nextAct = Intent(activity, GalleryDetailActivity::class.java)
 
         nextAct.putExtra(GalleryDetailActivity.GALLERY_TO_DISPLAY, Gson().toJson(favoritesList[position]))
+        nextAct.putExtra("ALREADY_LIKED", true)
         startActivity(nextAct)
     }
 }

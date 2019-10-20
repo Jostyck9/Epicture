@@ -24,6 +24,7 @@ class GalleryDetailActivity : AppCompatActivity(), GalleryDetailContract.View {
     var galleryDetailPresenter = GalleryDetailPresenter(this)
     companion object {
         var GALLERY_TO_DISPLAY : String = ""
+        var ALREADY_LIKED : Boolean = false
     }
     var my_gallery : Gallery? = null
 
@@ -43,6 +44,7 @@ class GalleryDetailActivity : AppCompatActivity(), GalleryDetailContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gallery_detail)
         GALLERY_TO_DISPLAY = intent.getStringExtra(GALLERY_TO_DISPLAY)
+        ALREADY_LIKED = intent.getBooleanExtra("ALREADY_LIKED", false)
         my_gallery = Gson().fromJson(GALLERY_TO_DISPLAY, Gallery::class.java)
 
         initUi()
@@ -66,6 +68,9 @@ class GalleryDetailActivity : AppCompatActivity(), GalleryDetailContract.View {
         rv_recycle_view?.isNestedScrollingEnabled = false
         rv_recycle_view?.itemAnimator = DefaultItemAnimator()
         rv_recycle_view?.adapter = galleryDetailAdapter
+
+        if (ALREADY_LIKED == true)
+            changeLikeColor(true)
     }
 
     private fun setListener() {
@@ -87,11 +92,6 @@ class GalleryDetailActivity : AppCompatActivity(), GalleryDetailContract.View {
     }
 
     override fun setGalleryDetail(gallery: Gallery?) {
-        if (gallery?.favorite != null && gallery?.favorite) {
-            changeLikeColor(true)
-        } else {
-            changeLikeColor(false)
-        }
         tv_title?.text = gallery?.title
         tv_user?.text = gallery?.account_url
         tv_ups?.text = gallery?.ups.toString()

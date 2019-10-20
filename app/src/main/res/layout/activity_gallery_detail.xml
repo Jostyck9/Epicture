@@ -72,14 +72,6 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/im_ups"
-                android:layout_width="0dp"
-                android:layout_height="45dp"
-                android:layout_weight="1"
-                android:contentDescription="up vote the gallery"
-                android:src="@android:drawable/arrow_up_float" />
-
-            <ImageButton
                 android:id="@+id/im_favorite"
                 android:layout_width="0dp"
                 android:layout_height="45dp"
@@ -87,13 +79,6 @@
                 android:contentDescription="Put the gallery inside the favorite or remove it"
                 android:src="@drawable/ic_favorite_border_black_24dp" />
 
-            <ImageButton
-                android:id="@+id/ib_downs"
-                android:layout_width="0dp"
-                android:layout_height="45dp"
-                android:layout_weight="1"
-                android:contentDescription="down vote the gallery"
-                android:src="@android:drawable/arrow_down_float" />
         </LinearLayout>
 
     </LinearLayout>
