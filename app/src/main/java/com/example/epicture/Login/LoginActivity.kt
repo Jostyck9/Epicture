@@ -5,22 +5,18 @@ import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.view.Window
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.Toast
 import com.example.epicture.Constants
 import com.example.epicture.MainActivity
 import com.example.epicture.Network.OAuthUrlUtil
 import com.example.epicture.R
 import kotlinx.android.synthetic.main.activity_login.*
-import retrofit2.http.Url
 
 class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //this.requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_login)
 
         val settings = webViewLogin.settings

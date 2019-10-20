@@ -1,7 +1,6 @@
 package com.example.epicture.Search
 
 import android.util.Log
-import com.example.epicture.Constants
 import com.example.epicture.Model.Gallery
 import com.example.epicture.Model.ResponseApi
 import com.example.epicture.Network.ApiClient

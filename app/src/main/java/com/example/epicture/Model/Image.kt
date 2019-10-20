@@ -1,7 +1,6 @@
 package com.example.epicture.Model
 
 import com.google.gson.annotations.SerializedName
-import java.io.FileDescriptor
 
 data class Image (
     @SerializedName("id")

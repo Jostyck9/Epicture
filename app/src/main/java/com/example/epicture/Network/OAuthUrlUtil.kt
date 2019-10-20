@@ -1,7 +1,6 @@
 package com.example.epicture.Network
 
 import com.example.epicture.Constants
-import java.net.URL
 
 class OAuthUrlUtil {
     fun getToken(url : String) : Boolean {

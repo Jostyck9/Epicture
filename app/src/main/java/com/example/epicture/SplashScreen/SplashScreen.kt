@@ -8,7 +8,6 @@ import android.view.View
 import com.example.epicture.Login.LoginActivity
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 
-
 class SplashScreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

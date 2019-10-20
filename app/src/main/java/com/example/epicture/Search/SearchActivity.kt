@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
@@ -14,13 +13,10 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.epicture.Favorites.FavoritesAdapter
-import com.example.epicture.Favorites.FavoritesPresenter
 import com.example.epicture.GalleryDetail.GalleryDetailActivity
 import com.example.epicture.Model.Gallery
 import com.example.epicture.R
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.fragment_search.*
 
 class SearchActivity : Fragment(), SearchContract.View {
     private val TAG = "SearchActivity"

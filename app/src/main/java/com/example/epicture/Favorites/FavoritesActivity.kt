@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.epicture.DiscoverList.DiscoverAdapter
 import com.example.epicture.GalleryDetail.GalleryDetailActivity
 import com.example.epicture.Model.Gallery
 import com.example.epicture.R

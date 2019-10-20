@@ -15,8 +15,6 @@ import com.example.epicture.Model.Gallery
 import com.example.epicture.Model.Image
 import com.example.epicture.R
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.activity_gallery_detail.*
-import org.w3c.dom.Text
 
 class GalleryDetailActivity : AppCompatActivity(), GalleryDetailContract.View {
 

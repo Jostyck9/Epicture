@@ -1,7 +1,6 @@
 package com.example.epicture.GalleryDetail
 
 import android.graphics.drawable.Drawable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,6 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.example.epicture.Model.Image
 import com.example.epicture.R
-import kotlin.math.log
 
 class GalleryDetailAdapter (
     private val galleryDetailActivity: GalleryDetailActivity,
