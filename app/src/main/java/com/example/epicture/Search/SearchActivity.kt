@@ -17,6 +17,7 @@ import com.example.epicture.Favorites.FavoritesAdapter
 import com.example.epicture.Favorites.FavoritesPresenter
 import com.example.epicture.Model.Gallery
 import com.example.epicture.R
+import kotlinx.android.synthetic.main.fragment_search.*
 
 class SearchActivity : Fragment(), SearchContract.View {
     private val TAG = "SearchActivity"
@@ -27,6 +28,7 @@ class SearchActivity : Fragment(), SearchContract.View {
     private var pageNo = 0
     private var query = ""
 
+    private var tv_msg : TextView? = null
     private var search_bar : TextView? = null
     private var bt_startResearch : ImageButton? = null
     private var rvSearchList : RecyclerView? = null
@@ -61,6 +63,8 @@ class SearchActivity : Fragment(), SearchContract.View {
         rvSearchList!!.layoutManager = mLayoutManager
         rvSearchList!!.itemAnimator = DefaultItemAnimator()
         rvSearchList!!.adapter = searchAdapter
+        tv_msg = root?.findViewById(R.id.tv_msg)
+        hideMsg()
     }
 
     private fun setListeners() {
@@ -88,7 +92,7 @@ class SearchActivity : Fragment(), SearchContract.View {
             }
         })
 
-        bt_startResearch!!.setOnClickListener(object : View.OnClickListener {
+        bt_startResearch?.setOnClickListener(object : View.OnClickListener {
 
             override fun onClick(v: View?) {
                 startResearch(v)
@@ -103,7 +107,17 @@ class SearchActivity : Fragment(), SearchContract.View {
     override fun hideProgress() {
     }
 
+    fun hideMsg() {
+        tv_msg?.visibility = View.INVISIBLE
+    }
+
+    fun showMsg() {
+        tv_msg?.visibility = View.VISIBLE
+    }
+
     override fun setGalleryToRecyclerView(galleryArrayList: List<Gallery>) {
+        if (galleryArrayList.isEmpty())
+            showMsg()
         for (gallery in galleryArrayList) {
             if (gallery.images != null && gallery.images.isNotEmpty())
                 searchList.add(gallery)
@@ -121,6 +135,7 @@ class SearchActivity : Fragment(), SearchContract.View {
         query = search_bar?.text.toString()
         searchList.clear()
         pageNo = 0
+        hideMsg()
 
         searchPresenter.search(query, pageNo)
     }

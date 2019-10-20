@@ -8,6 +8,18 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground">
 
+    <TextView
+        android:id="@+id/tv_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_result"
+        android:textColor="@color/colorTitleTxt"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/rv_image_list"
+        app:layout_constraintStart_toStartOf="@+id/rv_image_list"
+        app:layout_constraintTop_toTopOf="@+id/rv_image_list" />
+
     <EditText
         android:id="@+id/search_bar"
         style="@style/Widget.AppCompat.EditText"
