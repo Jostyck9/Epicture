@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context=".GalleryDetail.GalleryDetailActivity" >
+
+    <LinearLayout
+        android:id="@+id/ly_layout"
+        android:layout_width="413dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorLayout"
+            android:gravity="center"
+            android:textColor="@color/colorTitleTxt"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:text="Title" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_username"
+                android:layout_width="91dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorLayout"
+                android:textAlignment="center"
+                android:textColor="@color/colorTitleTxt"
+                android:textSize="18sp"
+                android:textStyle="bold|italic"
+                tools:text="username" />
+
+            <TextView
+                android:id="@+id/tv_ups"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorLayout"
+                android:drawableRight="@android:drawable/arrow_up_float"
+                android:drawablePadding="10dp"
+                android:textAlignment="textEnd"
+                android:textColor="@color/colorTitleTxt"
+                android:textSize="18sp"
+                tools:text="ups" />
+
+            <TextView
+                android:id="@+id/tv_down"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorLayout"
+                android:drawableLeft="@android:drawable/arrow_down_float"
+                android:drawablePadding="10dp"
+                android:textAlignment="textStart"
+                android:textColor="@color/colorTitleTxt"
+                android:textSize="18sp"
+                tools:text="downs" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/im_favorite"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:contentDescription="Put the gallery inside the favorite or remove it"
+                android:src="@drawable/ic_favorite_border_black_24dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ly_layout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_posts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_description"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorLayout"
+                android:textColor="@color/colorTitleTxt"
+                android:textSize="24sp"
+                tools:text="Description" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

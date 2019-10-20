@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">Epicture</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_discover">Discover</string>
+    <string name="title_search">Search</string>
+    <string name="title_favorites">Favorites</string>
+    <string name="title_account">Account</string>
+    <string name="title_upload">Upload</string>
+    <string name="title_about">About</string>
+    <string name="title_joined">Joined</string>
+    <string name="title_notoriety">Notoriety</string>
+    <string name="no_result">No result found</string>
 </resources>
