@@ -22,7 +22,7 @@ private val searchList: MutableList<Gallery>) : RecyclerView.Adapter<SearchAdapt
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.image_card, parent, false)
+            .inflate(R.layout.gallery_card, parent, false)
 
         return MyViewHolder(itemView)
     }

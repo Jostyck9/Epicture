@@ -16,7 +16,6 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.example.epicture.Model.Gallery
-import com.example.epicture.Model.Image
 
 import com.example.epicture.R
 
@@ -31,7 +30,7 @@ class DiscoverAdapter(private val discoverListActivity: DiscoverListActivity,
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.image_card, parent, false)
+            .inflate(R.layout.gallery_card, parent, false)
 
         return MyViewHolder(itemView)
     }
@@ -69,13 +68,13 @@ class DiscoverAdapter(private val discoverListActivity: DiscoverListActivity,
             })
             .apply(RequestOptions().placeholder(R.drawable.ic_place_holder).error(R.drawable.ic_place_holder))
             .into(holder.ivImageThumb)
-    }
 
-        /*holder.itemView.setOnClickListener(View.OnClickListener {
-            discoverListActivity.onMovieItemClick(
+        holder.itemView.setOnClickListener(View.OnClickListener {
+            discoverListActivity.onGalleryItemClick(
                 position
             )
-        })*/
+        })
+    }
 
     override fun getItemCount(): Int {
         return discoverList.size

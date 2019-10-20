@@ -1,8 +1,6 @@
 package com.example.epicture.Favorites
 
 import com.example.epicture.Model.Gallery
-import com.example.epicture.Model.Image
-import com.example.epicture.Model.User
 
 interface FavoritesContract {
     interface Model {

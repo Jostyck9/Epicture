@@ -1,6 +1,7 @@
 package com.example.epicture.DiscoverList
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,8 +12,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.epicture.GalleryDetail.GalleryDetailActivity
+import com.example.epicture.Login.LoginActivity
 import com.example.epicture.Model.Gallery
 import com.example.epicture.R
+import com.google.gson.Gson
 
 class DiscoverListActivity : Fragment(), DiscoverListContract.View {
     private val TAG = "DiscoverListActivity"
@@ -105,5 +109,13 @@ class DiscoverListActivity : Fragment(), DiscoverListContract.View {
     override fun onDestroy() {
         super.onDestroy()
         discoverListPresenter.onDestroy()
+    }
+
+    fun onGalleryItemClick(position : Int) {
+        // Start activity
+        val nextAct = Intent(activity, GalleryDetailActivity::class.java)
+
+        nextAct.putExtra(GalleryDetailActivity.GALLERY_TO_DISPLAY, Gson().toJson(discoverList[position]))
+        startActivity(nextAct)
     }
 }
