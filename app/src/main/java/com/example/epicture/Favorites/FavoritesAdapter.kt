@@ -32,8 +32,16 @@ class FavoritesAdapter (private val favoritesActivity: FavoritesActivity,
         // loading album cover using Glide library
 
         holder.tvImageTitle.text = favoritesList[position].title
-        holder.tvImageUps.text = favoritesList[position].ups.toString()
-        holder.tvImageDowns.text = favoritesList[position].downs.toString()
+
+        if (favoritesList[position].ups != null)
+            holder.tvImageUps.text = favoritesList[position].ups.toString()
+        else
+            holder.tvImageUps.text = "0"
+        if (favoritesList[position].downs != null)
+            holder.tvImageDowns.text = favoritesList[position].downs.toString()
+        else
+            holder.tvImageDowns.text = "0"
+
         Glide.with(favoritesActivity)
             .load(favoritesList[position].images[0].link)
             .listener(object : RequestListener<Drawable> {

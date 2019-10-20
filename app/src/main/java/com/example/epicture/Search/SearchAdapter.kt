@@ -32,8 +32,14 @@ private val searchList: MutableList<Gallery>) : RecyclerView.Adapter<SearchAdapt
         // loading album cover using Glide library
 
         holder.tvImageTitle.text = searchList[position].title
-        holder.tvImageUps.text = searchList[position].ups.toString()
-        holder.tvImageDowns.text = searchList[position].downs.toString()
+        if (searchList[position].ups != null)
+            holder.tvImageUps.text = searchList[position].ups.toString()
+        else
+            holder.tvImageUps.text = "0"
+        if (searchList[position].downs != null)
+            holder.tvImageDowns.text = searchList[position].downs.toString()
+        else
+            holder.tvImageDowns.text = "0"
         Glide.with(searchActivity)
             .load(searchList[position].images[0].link)
             .listener(object : RequestListener<Drawable> {

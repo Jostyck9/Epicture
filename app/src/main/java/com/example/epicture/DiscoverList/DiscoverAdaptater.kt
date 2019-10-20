@@ -40,8 +40,14 @@ class DiscoverAdapter(private val discoverListActivity: DiscoverListActivity,
         // loading album cover using Glide library
 
         holder.tvImageTitle.text = discoverList[position].title
-        holder.tvImageUps.text = discoverList[position].ups.toString()
-        holder.tvImageDowns.text = discoverList[position].downs.toString()
+        if (discoverList[position].ups != null)
+            holder.tvImageUps.text = discoverList[position].ups.toString()
+        else
+            holder.tvImageUps.text = "0"
+        if (discoverList[position].downs != null)
+            holder.tvImageDowns.text = discoverList[position].downs.toString()
+        else
+            holder.tvImageDowns.text = "0"
         Glide.with(discoverListActivity)
             .load(discoverList[position].images[0].link)
             .listener(object : RequestListener<Drawable> {
