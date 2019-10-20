@@ -38,9 +38,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/colorLayout"
+                android:textAlignment="center"
                 android:textColor="@color/colorTitleTxt"
                 android:textSize="18sp"
-                android:textStyle="italic"
+                android:textStyle="bold|italic"
                 tools:text="username" />
 
             <TextView
@@ -49,18 +50,22 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/colorLayout"
-                android:textAlignment="center"
+                android:drawableRight="@android:drawable/arrow_up_float"
+                android:drawablePadding="10dp"
+                android:textAlignment="textEnd"
                 android:textColor="@color/colorTitleTxt"
                 android:textSize="18sp"
                 tools:text="ups" />
 
             <TextView
                 android:id="@+id/tv_down"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/colorLayout"
-                android:textAlignment="center"
+                android:drawableLeft="@android:drawable/arrow_down_float"
+                android:drawablePadding="10dp"
+                android:textAlignment="textStart"
                 android:textColor="@color/colorTitleTxt"
                 android:textSize="18sp"
                 tools:text="downs" />

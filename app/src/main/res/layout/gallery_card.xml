@@ -71,10 +71,14 @@
 
                 <TextView
                     android:id="@+id/tv_image_ups"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="0.7"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:layout_gravity="end"
+                    android:layout_weight="0.5"
+                    android:drawableRight="@android:drawable/arrow_up_float"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:textAlignment="textEnd"
                     android:textColor="@color/colorTitleTxt"
                     android:textSize="@dimen/movie_content_size"
                     tools:text="ups" />
@@ -82,13 +86,14 @@
 
                 <TextView
                     android:id="@+id/tv_image_downs"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
                     android:layout_gravity="end"
-                    android:layout_weight="0.3"
-                    android:drawableLeft="@drawable/star"
-                    android:drawablePadding="5dp"
+                    android:layout_weight="0.5"
+                    android:drawableLeft="@android:drawable/arrow_down_float"
+                    android:drawablePadding="10dp"
                     android:gravity="center_vertical"
+                    android:textAlignment="textStart"
                     android:textColor="@color/colorTitleTxt"
                     android:textSize="@dimen/movie_content_size"
                     tools:text="downs" />
