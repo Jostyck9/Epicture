@@ -3,6 +3,7 @@ package com.example.epicture.GalleryDetail
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -32,6 +33,7 @@ class GalleryDetailActivity : AppCompatActivity(), GalleryDetailContract.View {
     var tv_user : TextView? = null
     var tv_ups : TextView? = null
     var tv_downs : TextView? = null
+    var tv_description : TextView? = null
     var rv_recycle_view : RecyclerView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,13 +51,14 @@ class GalleryDetailActivity : AppCompatActivity(), GalleryDetailContract.View {
         tv_user = this.findViewById(R.id.tv_username)
         tv_ups = this.findViewById(R.id.tv_ups)
         tv_downs = this.findViewById(R.id.tv_down)
+        tv_description = this.findViewById(R.id.tv_description)
         rv_recycle_view = this.findViewById(R.id.rv_posts)
 
         galleryDetailAdapter = GalleryDetailAdapter(this, myListImage)
 
         mLayoutManager = GridLayoutManager(this, 1)
         rv_recycle_view?.layoutManager = mLayoutManager
-        //rv_recycle_view?.isNestedScrollingEnabled = false
+        rv_recycle_view?.isNestedScrollingEnabled = false
         rv_recycle_view?.itemAnimator = DefaultItemAnimator()
         rv_recycle_view?.adapter = galleryDetailAdapter
     }
@@ -75,5 +78,10 @@ class GalleryDetailActivity : AppCompatActivity(), GalleryDetailContract.View {
         tv_user?.text = gallery?.account_url
         tv_ups?.text = gallery?.ups.toString()
         tv_downs?.text = gallery?.downs.toString()
+        if (gallery == null || (gallery != null && gallery.description == null)) {
+            tv_description?.visibility = View.INVISIBLE
+        } else {
+            tv_description?.text = gallery.description
+        }
     }
 }
