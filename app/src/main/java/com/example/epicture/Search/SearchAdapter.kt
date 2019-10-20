@@ -60,6 +60,12 @@ private val searchList: MutableList<Gallery>) : RecyclerView.Adapter<SearchAdapt
             })
             .apply(RequestOptions().placeholder(R.drawable.ic_place_holder).error(R.drawable.ic_place_holder))
             .into(holder.ivImageThumb)
+
+        holder.itemView.setOnClickListener(View.OnClickListener {
+            searchActivity.onGalleryItemClick(
+                position
+            )
+        })
     }
 
     override fun getItemCount(): Int {

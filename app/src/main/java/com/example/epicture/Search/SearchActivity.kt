@@ -1,5 +1,6 @@
 package com.example.epicture.Search
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,8 +16,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.epicture.Favorites.FavoritesAdapter
 import com.example.epicture.Favorites.FavoritesPresenter
+import com.example.epicture.GalleryDetail.GalleryDetailActivity
 import com.example.epicture.Model.Gallery
 import com.example.epicture.R
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_search.*
 
 class SearchActivity : Fragment(), SearchContract.View {
@@ -138,5 +141,14 @@ class SearchActivity : Fragment(), SearchContract.View {
         hideMsg()
 
         searchPresenter.search(query, pageNo)
+    }
+
+    fun onGalleryItemClick(position : Int) {
+        // Start activity
+        if (position >= 0 && position < searchList.size) {
+            val nextAct = Intent(activity, GalleryDetailActivity::class.java)
+            nextAct.putExtra(GalleryDetailActivity.GALLERY_TO_DISPLAY, Gson().toJson(searchList[position]))
+            startActivity(nextAct)
+        }
     }
 }

@@ -60,6 +60,13 @@ class FavoritesAdapter (private val favoritesActivity: FavoritesActivity,
             })
             .apply(RequestOptions().placeholder(R.drawable.ic_place_holder).error(R.drawable.ic_place_holder))
             .into(holder.ivImageThumb)
+
+        holder.itemView.setOnClickListener(View.OnClickListener {
+            favoritesActivity.onGalleryItemClick(
+                position
+            )
+        })
+
     }
 
     override fun getItemCount(): Int {

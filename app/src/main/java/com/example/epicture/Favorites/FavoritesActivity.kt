@@ -1,5 +1,6 @@
 package com.example.epicture.Favorites
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,8 +12,10 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.epicture.DiscoverList.DiscoverAdapter
+import com.example.epicture.GalleryDetail.GalleryDetailActivity
 import com.example.epicture.Model.Gallery
 import com.example.epicture.R
+import com.google.gson.Gson
 
 class FavoritesActivity : Fragment(), FavoritesContract.View {
 
@@ -104,5 +107,13 @@ class FavoritesActivity : Fragment(), FavoritesContract.View {
     override fun onResponseFailure(throwable: Throwable) {
         Log.e(TAG, throwable.message)
         Toast.makeText(activity, throwable.message, Toast.LENGTH_LONG).show()
+    }
+
+    fun onGalleryItemClick(position : Int) {
+        // Start activity
+        val nextAct = Intent(activity, GalleryDetailActivity::class.java)
+
+        nextAct.putExtra(GalleryDetailActivity.GALLERY_TO_DISPLAY, Gson().toJson(favoritesList[position]))
+        startActivity(nextAct)
     }
 }
