@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -29,6 +31,7 @@ class GalleryDetailActivity : AppCompatActivity(), GalleryDetailContract.View {
     var galleryDetailAdapter : GalleryDetailAdapter? = null
     private var mLayoutManager: GridLayoutManager? = null
 
+    var bt_like : ImageButton? = null
     var tv_title : TextView? = null
     var tv_user : TextView? = null
     var tv_ups : TextView? = null
@@ -43,10 +46,12 @@ class GalleryDetailActivity : AppCompatActivity(), GalleryDetailContract.View {
         my_gallery = Gson().fromJson(GALLERY_TO_DISPLAY, Gallery::class.java)
 
         initUi()
+        setListener()
         galleryDetailPresenter.printGallery(my_gallery)
     }
 
     private fun initUi() {
+        bt_like = this.findViewById(R.id.im_favorite)
         tv_title = this.findViewById(R.id.tv_title)
         tv_user = this.findViewById(R.id.tv_username)
         tv_ups = this.findViewById(R.id.tv_ups)
@@ -63,6 +68,14 @@ class GalleryDetailActivity : AppCompatActivity(), GalleryDetailContract.View {
         rv_recycle_view?.adapter = galleryDetailAdapter
     }
 
+    private fun setListener() {
+        bt_like?.setOnClickListener(object : View.OnClickListener{
+            override fun onClick(p0: View?) {
+                likeCallBack(p0)
+            }
+        })
+    }
+
     override fun onResponseFailure(throwable: Throwable) {
         Log.e(TAG, throwable.message)
         Toast.makeText(this, throwable.message, Toast.LENGTH_LONG).show()
@@ -74,6 +87,11 @@ class GalleryDetailActivity : AppCompatActivity(), GalleryDetailContract.View {
     }
 
     override fun setGalleryDetail(gallery: Gallery?) {
+        if (gallery?.favorite != null && gallery?.favorite) {
+            changeLikeColor(true)
+        } else {
+            changeLikeColor(false)
+        }
         tv_title?.text = gallery?.title
         tv_user?.text = gallery?.account_url
         tv_ups?.text = gallery?.ups.toString()
@@ -83,5 +101,20 @@ class GalleryDetailActivity : AppCompatActivity(), GalleryDetailContract.View {
         } else {
             tv_description?.text = gallery.description
         }
+    }
+
+    override fun changeLikeColor(isLiked : Boolean) {
+        if (isLiked) {
+            bt_like?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favorite_border_pink_24dp))
+            //bt_like?.setBackgroundColor(ContextCompat.getColor(this, R.color.colorAccent))
+        } else {
+            bt_like?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favorite_border_black_24dp))
+            //bt_like?.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLayout))
+        }
+    }
+
+    fun likeCallBack(view: View?) {
+        if (my_gallery != null && my_gallery!!.id != null)
+            this.galleryDetailPresenter.like(my_gallery!!.id!!)
     }
 }

@@ -5,11 +5,8 @@ import com.example.epicture.Model.Gallery
 import com.example.epicture.Model.Image
 import com.example.epicture.Model.ResponseApi
 import com.example.epicture.Model.User
-import retrofit2.http.GET
 import retrofit2.Call
-import retrofit2.http.Header
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ApiInterface {
 
@@ -48,4 +45,9 @@ interface ApiInterface {
                       @Query("q") toSearch : String,
                       @Header("Authorization") idClient : String = "Client-ID " + Constants.clientID
                     ) : Call<ResponseApi<List<Gallery>>>
+
+    @POST("album/{albumHash}/favorite")
+    fun favoriteAlbum(@Path("albumHash") idGallery : String,
+                      @Header("Authorization") bearer : String = "Bearer " + Constants.accessToken
+                    ) : Call<ResponseApi<String>>
 }
