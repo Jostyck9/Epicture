@@ -39,4 +39,13 @@ interface ApiInterface {
                                 @Path("favoritesSort") favoritesSort : String = "newest",
                                 @Header("Authorization") idClient : String = "Client-ID " + Constants.clientID
                                 ) : Call<ResponseApi<List<Gallery>>>
+
+    @GET("gallery/search/{sort}/{window}/{page}")
+    fun gallerySearch(
+                      @Path("page") pageNo : Int,
+                      @Path("window") window : String,
+                      @Path("sort") sort : String,
+                      @Query("q") toSearch : String,
+                      @Header("Authorization") idClient : String = "Client-ID " + Constants.clientID
+                    ) : Call<ResponseApi<List<Gallery>>>
 }

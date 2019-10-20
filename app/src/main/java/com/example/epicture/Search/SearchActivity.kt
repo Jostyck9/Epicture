@@ -1,31 +1,36 @@
-package com.example.epicture.Favorites
+package com.example.epicture.Search
 
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.epicture.DiscoverList.DiscoverAdapter
+import com.example.epicture.Favorites.FavoritesAdapter
+import com.example.epicture.Favorites.FavoritesPresenter
 import com.example.epicture.Model.Gallery
 import com.example.epicture.R
 
-class FavoritesActivity : Fragment(), FavoritesContract.View {
-
-    private val TAG = "AccountActivity"
-    private val favoritePresenter = FavoritesPresenter(this)
+class SearchActivity : Fragment(), SearchContract.View {
+    private val TAG = "SearchActivity"
+    private val searchPresenter = SearchPresenter(this)
     var root : View? = null
 
-    private var favoritesList = mutableListOf<Gallery>()
+    private var searchList = mutableListOf<Gallery>()
     private var pageNo = 0
-    private var end = false
+    private var query = ""
 
-    private var rvFavoritesList : RecyclerView? = null
-    private var favoriteAdapter : FavoritesAdapter? = null
+    private var search_bar : TextView? = null
+    private var bt_startResearch : ImageButton? = null
+    private var rvSearchList : RecyclerView? = null
+    private var searchAdapter : SearchAdapter? = null
     private var mLayoutManager : GridLayoutManager? = null
     private var previousTotal = 0
     private var loading = true
@@ -39,31 +44,33 @@ class FavoritesActivity : Fragment(), FavoritesContract.View {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        root = inflater.inflate(R.layout.fragment_favorite, container, false)
+        root = inflater.inflate(R.layout.fragment_search, container, false)
         initUI()
         setListeners()
-        favoritePresenter.getAccountData(pageNo)
         return root
     }
 
     private fun initUI() {
-        rvFavoritesList = root?.findViewById(R.id.rv_image_list)
-        favoriteAdapter = FavoritesAdapter(this, favoritesList)
+        rvSearchList = root?.findViewById(R.id.rv_image_list)
+        searchAdapter = SearchAdapter(this, searchList)
+
+        search_bar = root?.findViewById(R.id.search_bar)
+        bt_startResearch = root?.findViewById(R.id.bt_startResearch)
 
         mLayoutManager = GridLayoutManager(activity, 1)
-        rvFavoritesList!!.layoutManager = mLayoutManager
-        rvFavoritesList!!.itemAnimator = DefaultItemAnimator()
-        rvFavoritesList!!.adapter = favoriteAdapter
+        rvSearchList!!.layoutManager = mLayoutManager
+        rvSearchList!!.itemAnimator = DefaultItemAnimator()
+        rvSearchList!!.adapter = searchAdapter
     }
 
     private fun setListeners() {
 
-        rvFavoritesList!!.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        rvSearchList!!.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
-                visibleItemCount = rvFavoritesList!!.childCount
+                visibleItemCount = rvSearchList!!.childCount
                 totalItemCount = mLayoutManager!!.itemCount
                 firstVisibleItem = mLayoutManager!!.findFirstVisibleItemPosition()
 
@@ -74,11 +81,19 @@ class FavoritesActivity : Fragment(), FavoritesContract.View {
                         previousTotal = totalItemCount
                     }
                 }
-                if (!loading && totalItemCount - visibleItemCount <= firstVisibleItem + visibleThreshold && !end) {
-                    favoritePresenter.getAccountData(pageNo)
+                if (!loading && totalItemCount - visibleItemCount <= firstVisibleItem + visibleThreshold && searchList.isNotEmpty()) {
+                    searchPresenter.search(query, pageNo)
                     loading = true
                 }
             }
+        })
+
+        bt_startResearch!!.setOnClickListener(object : View.OnClickListener {
+
+            override fun onClick(v: View?) {
+                startResearch(v)
+            }
+
         })
     }
 
@@ -91,18 +106,22 @@ class FavoritesActivity : Fragment(), FavoritesContract.View {
     override fun setGalleryToRecyclerView(galleryArrayList: List<Gallery>) {
         for (gallery in galleryArrayList) {
             if (gallery.images != null && gallery.images.isNotEmpty())
-                favoritesList.add(gallery)
+                searchList.add(gallery)
         }
-        if (galleryArrayList.isEmpty()) {
-            end = true
-            return
-        }
-        favoriteAdapter?.notifyDataSetChanged()
+        searchAdapter?.notifyDataSetChanged()
         pageNo++
     }
 
     override fun onResponseFailure(throwable: Throwable) {
         Log.e(TAG, throwable.message)
         Toast.makeText(activity, throwable.message, Toast.LENGTH_LONG).show()
+    }
+
+    fun startResearch(view: View?) {
+        query = search_bar?.text.toString()
+        searchList.clear()
+        pageNo = 0
+
+        searchPresenter.search(query, pageNo)
     }
 }
