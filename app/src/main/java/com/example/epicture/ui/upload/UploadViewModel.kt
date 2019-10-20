@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 
 class UploadViewModel : ViewModel() {
     private val _text = MutableLiveData<String>().apply {
-        value = "This is Upload Fragment"
+        value = "Incoming Feature"
     }
     val text: LiveData<String> = _text
 }
